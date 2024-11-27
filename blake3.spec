@@ -4,12 +4,12 @@
 #
 Summary:	Official implementation of BLAKE3 cryptographic hash function
 Name:		blake3
-Version:	1.5.4
+Version:	1.5.5
 Release:	1
 License:	CCO or Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/BLAKE3-team/BLAKE3/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	5745700dfd8bbf665544e259ff4ebfc9
+# Source0-md5:	4a82205b1998373d5139a4c89e46b17f
 URL:		https://github.com/BLAKE3-team/BLAKE3
 BuildRequires:	cmake >= 3.9
 BuildRequires:	rpmbuild(macros) >= 2.007
