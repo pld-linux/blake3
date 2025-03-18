@@ -4,15 +4,18 @@
 #
 Summary:	Official implementation of BLAKE3 cryptographic hash function
 Name:		blake3
-Version:	1.6.1
+Version:	1.7.0
 Release:	1
 License:	CCO or Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/BLAKE3-team/BLAKE3/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	591030db9f905d3fa9146eb97421f3e2
+# Source0-md5:	bb8de3216814f3894d0c6e0c2936117f
 URL:		https://github.com/BLAKE3-team/BLAKE3
 BuildRequires:	cmake >= 3.9
+BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 2.007
+BuildRequires:	tbb-devel >= 2021.11.0
+Requires:	tbb >= 2021.11.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,6 +46,7 @@ Header files for blake3 library.
 install -d c/build
 cd c/build
 %cmake .. \
+	-DBLAKE3_USE_TBB:BOOL=ON \
 %ifarch %arm_with_neon
 	-DBLAKE3_USE_NEON_INTRINSICS:BOOL=ON \
 	-DBLAKE3_CFLAGS_NEON=''
