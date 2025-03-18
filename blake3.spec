@@ -2,6 +2,9 @@
 # - switch to rust implementation by  default?
 # - package b3sum
 #
+# Conditional build:
+%bcond_without	tbb	# multithreading support with tbb library
+
 Summary:	Official implementation of BLAKE3 cryptographic hash function
 Name:		blake3
 Version:	1.7.0
@@ -14,8 +17,8 @@ URL:		https://github.com/BLAKE3-team/BLAKE3
 BuildRequires:	cmake >= 3.9
 BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 2.007
-BuildRequires:	tbb-devel >= 2021.11.0
-Requires:	tbb >= 2021.11.0
+%{?with_tbb:BuildRequires:	tbb-devel >= 2021.11.0}
+%{?with_tbbb:Requires:	tbb >= 2021.11.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,7 +49,7 @@ Header files for blake3 library.
 install -d c/build
 cd c/build
 %cmake .. \
-	-DBLAKE3_USE_TBB:BOOL=ON \
+	%{cmake_on_off tbb BLAKE3_USE_TBB} \
 %ifarch %arm_with_neon
 	-DBLAKE3_USE_NEON_INTRINSICS:BOOL=ON \
 	-DBLAKE3_CFLAGS_NEON=''
