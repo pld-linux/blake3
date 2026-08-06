@@ -7,12 +7,12 @@
 
 Summary:	Official implementation of BLAKE3 cryptographic hash function
 Name:		blake3
-Version:	1.8.1
+Version:	1.8.6
 Release:	1
 License:	CCO or Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/BLAKE3-team/BLAKE3/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	e7c8e300b895a51c0734bce493b83666
+# Source0-md5:	76b5a080997967e451d99e6f1d1a480b
 URL:		https://github.com/BLAKE3-team/BLAKE3
 BuildRequires:	cmake >= 3.9
 BuildRequires:	libstdc++-devel
