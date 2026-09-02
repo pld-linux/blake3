@@ -18,7 +18,7 @@ BuildRequires:	cmake >= 3.9
 BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 2.007
 %{?with_tbb:BuildRequires:	tbb-devel >= 2021.11.0}
-%{?with_tbbb:Requires:	tbb >= 2021.11.0}
+%{?with_tbb:Requires:	tbb >= 2021.11.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
