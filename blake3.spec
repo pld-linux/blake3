@@ -1,11 +1,12 @@
 # TODO:
-# - switch to rust implementation by  default?
+# - switch to rust implementation by default?
 # - package b3sum
 #
 # Conditional build:
 %bcond_without	tbb	# multithreading support with tbb library
 
 Summary:	Official implementation of BLAKE3 cryptographic hash function
+Summary(pl.UTF-8):	Oficjalna implementacja funkcji skrótu kryptograficznego BLAKE3
 Name:		blake3
 Version:	1.8.6
 Release:	1
@@ -34,13 +35,30 @@ BLAKE3 is a cryptographic hash function that is:
 - One algorithm with no variants, which is fast on x86-64 and also on
   smaller architectures.
 
+%description -l pl.UTF-8
+BLAKE3 to funkcja skrótu kryptograficznego:
+- znacznie szybsza niż MD5, SHA-1, SHA-2, SHA-3 i BLAKE2
+- bezpieczna, w przeciwieństwie do MD5 i SHA-1; i bezpieczna względem
+  rozszerzania długości, w przeciwieństwie do SHA-2.
+- dająca się znacząco zrównoleglić na dowolną liczbę wątków i ścieżek
+  SIMD ze względu na występujące wewnątrz drzewo Merkle'a
+- pozwalająca na przesyłanie strumieni z weryfikacją i uaktualnieniami
+  przyrostowymi, także ze względu na drzewo Merkle'a
+- PRF, MAC, KDF, XOF, a także zwykła funkcja skrótu
+- jeden algorytm bez wariantów, szybki na x86-64, jak i mniejszych
+  architekturach.
+
 %package devel
 Summary:	Header files for blake3 library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki blake3
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for blake3 library.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki blake3.
 
 %prep
 %setup -q -n BLAKE3-%{version}
