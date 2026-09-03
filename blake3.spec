@@ -17,7 +17,7 @@ Source0:	https://github.com/BLAKE3-team/BLAKE3/archive/%{version}/%{name}-%{vers
 URL:		https://github.com/BLAKE3-team/BLAKE3
 BuildRequires:	cmake >= 3.9
 BuildRequires:	libstdc++-devel
-BuildRequires:	rpmbuild(macros) >= 2.007
+BuildRequires:	rpmbuild(macros) >= 2.047
 %{?with_tbb:BuildRequires:	tbb-devel >= 2021.11.0}
 %{?with_tbb:Requires:	tbb >= 2021.11.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,7 +67,7 @@ Pliki nagłówkowe biblioteki blake3.
 install -d c/build
 cd c/build
 %cmake .. \
-	%{cmake_on_off tbb BLAKE3_USE_TBB} \
+	-DBLAKE3_USE_TBB:BOOL=%{__ON_OFF tbb} \
 %ifarch %arm_with_neon
 	-DBLAKE3_USE_NEON_INTRINSICS:BOOL=ON \
 	-DBLAKE3_CFLAGS_NEON=''
@@ -89,12 +89,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libblake3.so.0
-%attr(755,root,root) %{_libdir}/libblake3.so.*.*.*
+%doc README.md
+%{_libdir}/libblake3.so.*.*.*
+%ghost %{_libdir}/libblake3.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libblake3.so
+%{_libdir}/libblake3.so
 %{_includedir}/blake3.h
 %{_pkgconfigdir}/libblake3.pc
 %{_libdir}/cmake/blake3
