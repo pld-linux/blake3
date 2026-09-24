@@ -9,7 +9,7 @@ Summary:	Official implementation of BLAKE3 cryptographic hash function
 Summary(pl.UTF-8):	Oficjalna implementacja funkcji skrótu kryptograficznego BLAKE3
 Name:		blake3
 Version:	1.8.6
-Release:	1
+Release:	2
 License:	CCO or Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/BLAKE3-team/BLAKE3/archive/%{version}/%{name}-%{version}.tar.gz
@@ -53,6 +53,7 @@ Summary:	Header files for blake3 library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki blake3
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%{?with_tbb:Requires:	libstdc++-devel}
 
 %description devel
 Header files for blake3 library.
