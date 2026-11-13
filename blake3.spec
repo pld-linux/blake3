@@ -1,6 +1,6 @@
 # TODO:
 # - switch to rust implementation by default?
-# - package b3sum
+# - package b3sum (rust implementation only)
 #
 # Conditional build:
 %bcond_without	tbb	# multithreading support with tbb library
@@ -8,15 +8,16 @@
 Summary:	Official implementation of BLAKE3 cryptographic hash function
 Summary(pl.UTF-8):	Oficjalna implementacja funkcji skrótu kryptograficznego BLAKE3
 Name:		blake3
-Version:	1.8.6
-Release:	2
-License:	CCO or Apache v2.0
+Version:	1.8.7
+Release:	1
+License:	CC0 or Apache v2.0
 Group:		Libraries
+#Source0Download: https://github.com/BLAKE3-team/BLAKE3/releases
 Source0:	https://github.com/BLAKE3-team/BLAKE3/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	76b5a080997967e451d99e6f1d1a480b
+# Source0-md5:	c890f81145b4fe74f68e2a430150bdb4
 URL:		https://github.com/BLAKE3-team/BLAKE3
 BuildRequires:	cmake >= 3.9
-BuildRequires:	libstdc++-devel
+%{?with_tbb:BuildRequires:	libstdc++-devel >= 6:8}
 BuildRequires:	rpmbuild(macros) >= 2.047
 %{?with_tbb:BuildRequires:	tbb-devel >= 2021.11.0}
 %{?with_tbb:Requires:	tbb >= 2021.11.0}
@@ -52,8 +53,8 @@ BLAKE3 to funkcja skrótu kryptograficznego:
 Summary:	Header files for blake3 library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki blake3
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-%{?with_tbb:Requires:	libstdc++-devel}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+%{?with_tbb:Requires:	libstdc++-devel%{?_isa} >= 6:8}
 
 %description devel
 Header files for blake3 library.
